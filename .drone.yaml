@@ -1,0 +1,14 @@
+# A YAML template example.
+kind: pipeline
+type: docker
+name: mydrone
+steps:
+   - name: fastapi
+     image: python:3.9
+     environment:
+        - TZ=Asia/Shanghai
+     ports:
+        - "9006:80" 
+     commands:
+        - pip install --no-cache-dir --upgrade -r requirements.txt
+        - uvicorn app.main:app --host 0.0.0.0 --port 80
